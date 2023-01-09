@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class View : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Range(1.0f, 50.0f)]  public float distance = 1.0f;
+    [Range(0.0f, 180.0f)] public float max_angle = 45.0f; // degrees
 
-    // Update is called once per frame
-    void Update()
+    public GameObject[] getGameObjects()
     {
-        
+        List<GameObject> objs = new List<GameObject>();
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, distance);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject == this.gameObject) continue;
+            objs.Add(collider.gameObject);
+        }
+
+        return objs.ToArray();
     }
 }
