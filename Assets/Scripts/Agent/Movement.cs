@@ -7,7 +7,11 @@ public class Movement : MonoBehaviour
     public Vector3 vel { get; set; } = Vector3.zero;
     public Vector3 acc { get; set; } = Vector3.zero;
 
+    [Range(1, 10)] public float min_speed = 1;
     [Range(1, 10)] public float max_speed = 5;
+    [Range(1, 10)] public float max_force = 5;
+
+    [Range(0, 10)] public float persistence = 1.0f;
 
     void Start()
     {
@@ -27,7 +31,7 @@ public class Movement : MonoBehaviour
     void LateUpdate()
     {
         vel += acc * Time.deltaTime;
-        vel = Vector3.ClampMagnitude(vel, max_speed);
+        vel = Utilities.ClampMagnitude(vel, min_speed, max_speed);
         transform.position += vel * Time.deltaTime;
         if (vel.sqrMagnitude > 0.1f)
         {
