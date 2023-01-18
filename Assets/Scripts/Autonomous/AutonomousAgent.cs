@@ -6,17 +6,9 @@ using UnityEngine;
 
 public class AutonomousAgent : Agent
 {
-    [Range(0, 2)] public float flee_weight = 1f;
-    [Range(0, 2)] public float seek_weight = 1f;
-    [Range(0, 2)] public float flock_weight = 1f;
-    [Range(0, 5)] public float flock_radius = 1f;
-    [Range(0, 2)] public float separate_weight = 1f;
-    [Range(0, 2)] public float align_weight = 1f;
-
-
-    public float wander_distance = 1f;
-    public float wander_radius = 3f;
-    public float wander_displacement = 5f;
+    public View flockView;
+    public Avoidance obstacleAvoidance;
+    public AutonomousAgentData data;
 
     public float wander_angle { get; set; } = 0f;
 
@@ -30,8 +22,8 @@ public class AutonomousAgent : Agent
 
         if (objs.Length > 0)
         {
-            agentMovement.applyForce(Steering.Seek(this, objs[0]) * seek_weight);
-            agentMovement.applyForce(Steering.Flee(this, objs[0]) * flee_weight);
+            agentMovement.applyForce(Steering.Seek(this, objs[0]) * data.seek_weight);
+            agentMovement.applyForce(Steering.Flee(this, objs[0]) * data.flee_weight);
         }
         else
         {
@@ -44,11 +36,17 @@ public class AutonomousAgent : Agent
         if (flockView != null) objs = flockView.getGameObjects();
         if (objs.Length > 0)
         {
-            agentMovement.applyForce(Steering.Flock(this, objs) * flock_weight);
-            agentMovement.applyForce(Steering.FlockNear(this, objs, flock_radius) * separate_weight);
-            agentMovement.applyForce(Steering.FlockAlign(this, objs) * align_weight);
+            agentMovement.applyForce(Steering.Flock(this, objs) * data.flock_weight);
+            agentMovement.applyForce(Steering.FlockNear(this, objs, data.flock_radius) * data.separate_weight);
+            agentMovement.applyForce(Steering.FlockAlign(this, objs) * data.align_weight);
         }
 
-        transform.position = Utilities.WrapWorld(transform.position, new Vector3(-20, -20, -20), new Vector3(20, 20, 20));
+        if (obstacleAvoidance.isObstancleBlocking())
+        {
+            Vector3 direction = obstacleAvoidance.getOpenDirection();
+            agentMovement.applyForce(Steering.Steer(this, direction) * data.obstacle_weight);
+        }
+
+        transform.position = Utilities.WrapWorld(transform.position, new Vector3(-50, -50, -50), new Vector3(50, 50, 50));
     }
 }

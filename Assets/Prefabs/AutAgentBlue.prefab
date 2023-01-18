@@ -10,14 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 5299588425516029487}
   - component: {fileID: 5299588425516029484}
-  - component: {fileID: 5299588425516029485}
-  - component: {fileID: 1015947810681017434}
   - component: {fileID: 5299588425516029486}
+  - component: {fileID: 6078191518660889581}
+  - component: {fileID: 4834482127360527338}
+  - component: {fileID: 3626686570978973422}
   - component: {fileID: 5299588425516029472}
   - component: {fileID: 5299588425516029473}
   - component: {fileID: 5299588425516029474}
   m_Layer: 0
-  m_Name: AgentBlue
+  m_Name: AutAgentBlue
   m_TagString: AgentBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5299588425571071721}
+  - {fileID: 1985111247813170025}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,44 +53,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b52da189217df47bbdda857a5565b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentView: {fileID: 5299588425516029485}
-  flockView: {fileID: 1015947810681017434}
+  agentView: {fileID: 6078191518660889581}
   agentMovement: {fileID: 5299588425516029486}
-  flee_weight: 1
-  seek_weight: 1
-  wander_distance: 1
-  wander_radius: 3
-  wander_displacement: 5
---- !u!114 &5299588425516029485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5299588425516029475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b678471e38c89994eb6cb8095a890902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 10
-  max_angle: 45
-  tag_name: AgentPurple
---- !u!114 &1015947810681017434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5299588425516029475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b678471e38c89994eb6cb8095a890902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 5
-  max_angle: 180
-  tag_name: AgentBlue
+  flockView: {fileID: 4834482127360527338}
+  obstacleAvoidance: {fileID: 3626686570978973422}
+  data: {fileID: 11400000, guid: 73b793e61cec74a4f91c88d5a6256aa9, type: 2}
 --- !u!114 &5299588425516029486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +74,59 @@ MonoBehaviour:
   max_speed: 10
   max_force: 5
   persistence: 1
+--- !u!114 &6078191518660889581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299588425516029475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1314cce214d17ef489d1dadb2a12d20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 10
+  max_angle: 90
+  tag_name: AgentPurple
+  raycast_transform: {fileID: 1985111247813170025}
+  raycasts: 8
+--- !u!114 &4834482127360527338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299588425516029475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1314cce214d17ef489d1dadb2a12d20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 20
+  max_angle: 180
+  tag_name: AgentBlue
+  raycast_transform: {fileID: 1985111247813170025}
+  raycasts: 8
+--- !u!114 &3626686570978973422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299588425516029475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e68e65f1a503a48b072dd021d276ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycast_transform: {fileID: 1985111247813170025}
+  distance: 20
+  max_angle: 180
+  raycasts: 16
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!33 &5299588425516029472
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -252,3 +274,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8540375833638544332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985111247813170025}
+  m_Layer: 0
+  m_Name: Eye
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1985111247813170025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540375833638544332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5299588425516029487}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
