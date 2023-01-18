@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min_speed: 3
   max_speed: 10
-  max_force: 5
+  max_force: 10
   persistence: 1
 --- !u!114 &6078191518660889581
 MonoBehaviour:

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BlueData
   m_EditorClassIdentifier: 
   wander_distance: 1
-  wander_radius: 2
+  wander_radius: 1
   wander_displacement: 2
   flock_radius: 2
-  seek_weight: 0.5
+  seek_weight: 0
   flee_weight: 0
   flock_weight: 5
   separate_weight: 1
