@@ -18,7 +18,7 @@ MonoBehaviour:
   flock_radius: 2
   seek_weight: 0
   flee_weight: 0
-  flock_weight: 5
-  separate_weight: 1
-  align_weight: 1
+  flock_weight: 0.2
+  separate_weight: 0.1
+  align_weight: 0.1
   obstacle_weight: 1

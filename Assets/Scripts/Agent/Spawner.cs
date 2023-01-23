@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100, layer_mask))
             {
-                Instantiate(agents[0], hitInfo.point, Quaternion.identity);
+                Instantiate(agents[0], hitInfo.point, Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
             }
         }
 
@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100, layer_mask))
             {
-                Instantiate(agents[1], hitInfo.point, Quaternion.identity);
+                Instantiate(agents[1], hitInfo.point, Quaternion.AngleAxis(Random.Range(0,360), Vector3.up));
             }
         }
     }

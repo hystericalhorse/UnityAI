@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
 
     [Range(1, 10)] public float min_speed = 1;
     [Range(1, 10)] public float max_speed = 5;
-    [Range(1, 10)] public float max_force = 5;
+    [Range(1, 100)] public float max_force = 5;
 
     [Range(0, 10)] public float persistence = 1.0f;
 
@@ -28,7 +28,13 @@ public class Movement : MonoBehaviour
         acc += F;
     }
 
-    void LateUpdate()
+	public void moveTowards(Vector3 target)
+	{
+		Vector3 direction = (target - transform.position).normalized;
+		applyForce(direction * max_force);
+	}
+
+	void LateUpdate()
     {
         vel += acc * Time.deltaTime;
         vel = Utilities.ClampMagnitude(vel, min_speed, max_speed);

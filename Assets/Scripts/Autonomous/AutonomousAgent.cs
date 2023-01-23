@@ -49,6 +49,9 @@ public class AutonomousAgent : Agent
 			agentMovement.applyForce(Steering.FlockAlign(this, objs) * data.align_weight);
 		}
 		
-        transform.position = Utilities.WrapWorld(transform.position, new Vector3(-50, -50, -50), new Vector3(50, 50, 50));
+        Vector3 position = transform.position;
+		position = Utilities.WrapWorld(position, new Vector3(-50, -50, -50), new Vector3(50, 50, 50));
+		position.y = 0;
+		transform.position = position;
     }
 }
