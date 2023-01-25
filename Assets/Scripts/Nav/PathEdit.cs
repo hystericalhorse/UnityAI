@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class Pathfinding : MonoBehaviour
+public class PathEdit : MonoBehaviour
 {
 	[SerializeField] GameObject node_prefab;
 	[SerializeField] LayerMask layer_mask;
