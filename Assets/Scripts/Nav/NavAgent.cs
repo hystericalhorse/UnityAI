@@ -29,6 +29,10 @@ public class NavAgent : Agent
 		{
 			agentMovement.moveTowards(target_node.transform.position);
 		}
+		else
+		{
+			agentMovement.Stop();
+		}
 	}
 
 	public Node GetNextTarget(Node node)

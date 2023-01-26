@@ -6,10 +6,16 @@ using UnityEngine.UIElements;
 
 public class NavPath : MonoBehaviour
 {
+	public Action end_action = Action.RANDOM;
 	List<Node> path = new List<Node>();
 
 	public Node startNode { get; set; }
 	public Node endNode { get; set; }
+
+	public enum Action
+	{
+		RANDOM, PINGPONG, STOP
+	}
 
 	public void StartPath()
 	{
@@ -24,7 +30,14 @@ public class NavPath : MonoBehaviour
 		// check if noode index is at the end of the path
 		if (index == path.Count - 1)
 		{
-			SetRandomEndNode();
+			switch (end_action)
+			{
+				default:
+				case Action.STOP: { return null; }
+				case Action.PINGPONG: { SwapStart();  break; }
+				case Action.RANDOM: { SetRandomEndNode(); break; }
+			}
+			
 			// generate new path
 			GeneratePath();
 
@@ -35,6 +48,13 @@ public class NavPath : MonoBehaviour
 		Node nextNode = path[index + 1];
 
 		return nextNode;
+	}
+
+	private void SwapStart()
+	{
+		Node t = startNode;
+		startNode = endNode;
+		endNode = t;
 	}
 
 	private void SetRandomEndNode()

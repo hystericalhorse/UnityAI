@@ -23,7 +23,12 @@ public class Movement : MonoBehaviour
         
     }
 
-    public void applyForce(Vector3 F)
+	public void Stop()
+	{
+		vel = Vector3.zero;
+	}
+
+	public void applyForce(Vector3 F)
     {
         acc += F;
     }

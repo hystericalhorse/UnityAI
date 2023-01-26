@@ -8,7 +8,6 @@ public static class Path
 {
 	public static bool Dijkstra(Node start, Node end, ref List<Node> path)
 	{
-		bool found = false;
 
 		// create priority queue
 		var nodes = new SimplePriorityQueue<Node>();
@@ -19,6 +18,7 @@ public static class Path
 		nodes.EnqueueWithoutDuplicates(start, start.cost);
 
 		// update until found or no nodes in queue
+		bool found = false;
 		while (!found && nodes.Count > 0)
 		{
 			// dequeue node
