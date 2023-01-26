@@ -11,7 +11,7 @@ public class Waypoint : Node
 		{
 			if (agent.target_node == this && neighbors.Count > 0)
 			{
-				agent.target_node = neighbors[Random.Range(0, neighbors.Count)];
+				agent.target_node = agent.GetNextTarget(agent.target_node);
 			}
 		}
 	}
@@ -22,7 +22,7 @@ public class Waypoint : Node
 		{
 			if (agent.target_node == this && neighbors.Count > 0)
 			{
-				agent.target_node = neighbors[Random.Range(0, neighbors.Count)];
+				agent.target_node = agent.GetNextTarget(agent.target_node);
 			}
 		}
 	}

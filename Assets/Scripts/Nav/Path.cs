@@ -16,7 +16,7 @@ public static class Path
 		// set source cost to 0
 		start.cost = 0;
 		// enqueue source node with the source cost as the priority
-		// TODO
+		nodes.EnqueueWithoutDuplicates(start, start.cost);
 
 		// update until found or no nodes in queue
 		while (!found && nodes.Count > 0)
@@ -35,16 +35,16 @@ public static class Path
 			foreach (var neighbor in node.neighbors)
 			{
 				// calculate cost to neighbor = node cost + distance to neighbor
-				float cost = 0; // <- TODO
+				float cost = node.cost + Vector3.Distance(node.transform.position, neighbor.transform.position);
 				// if cost < neighbor cost, add to priority queue
 				if (cost < neighbor.cost)
 				{
 					// set neighbor cost to cost
-					// TODO
+					neighbor.cost = cost;
 					// set neighbor parent to node
-					// TODO
+					neighbor.parent = node;
 					// enqueue without duplicates neighbor with cost as priority
-					// TODO
+					nodes.EnqueueWithoutDuplicates(neighbor, neighbor.cost);
 				}
 			}
 		}
@@ -69,9 +69,9 @@ public static class Path
 		while (node != null)
 		{
 			// add node to list path
-			// TODO
+			path.Add(node);
 			// set node to node parent
-			// TODO
+			node = node.parent;
 		}
 
 		// reverse path

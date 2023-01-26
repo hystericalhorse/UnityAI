@@ -51,14 +51,14 @@ public class NavPath : MonoBehaviour
 	private void GeneratePath()
 	{
 		Node.ResetNodes();
-		Path.Dijkstra(startNode, endNode, ref path, 100);
+		Path.Dijkstra(startNode, endNode, ref path);
 	}
 
 	private void OnDrawGizmos()
 	{
 		foreach (Node node in path)
 		{
-			Gizmos.color = Color.blue;
+			Gizmos.color = Color.yellow;
 			Gizmos.DrawWireSphere(node.gameObject.transform.position, node.radius);
 		}
 		if (startNode != null) Gizmos.DrawIcon(startNode.transform.position + Vector3.up, "nav_nodeA.png", true, Color.green);
