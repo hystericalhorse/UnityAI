@@ -14,7 +14,7 @@ public class Raycast : View
         Vector3[] directions = Utilities.getCirclularDirections(raycasts, (int) max_angle);
         foreach (var direction in directions)
         {
-            Ray ray = new Ray(raycast_transform.position, raycast_transform.forward);
+            Ray ray = new Ray(raycast_transform.position, raycast_transform.rotation * direction);
 
             if (Physics.Raycast(ray, out RaycastHit hit, distance))
             {

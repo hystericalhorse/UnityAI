@@ -71,7 +71,7 @@ public class NavPath : MonoBehaviour
 	private void GeneratePath()
 	{
 		Node.ResetNodes();
-		Path.Dijkstra(startNode, endNode, ref path);
+		Path.aStar(startNode, endNode, ref path);
 	}
 
 	private void OnDrawGizmos()

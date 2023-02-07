@@ -6,4 +6,6 @@ public abstract class Agent : MonoBehaviour
 {
     public View agentView;
     public Movement agentMovement;
+    public Animator animator;
+    public Navigation navigation;
 }

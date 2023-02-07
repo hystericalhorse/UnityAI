@@ -57,7 +57,22 @@ public class Node : MonoBehaviour
 		return FindObjectsOfType<Node>();
 	}
 
-	public static Node GetRandomNode()
+    public static Node[] GetNodes(string tag)
+    {
+        var gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        List<Node> nodes = new List<Node>();
+        foreach (var go in gameObjects)
+        {
+            if (go.TryGetComponent<Node>(out Node navNode))
+            {
+                nodes.Add(navNode);
+            }
+        }
+
+        return nodes.ToArray();
+    }
+
+    public static Node GetRandomNode()
 	{
 		var nodes = GetNodes();
 		return (nodes == null) ? null : nodes[Random.Range(0, nodes.Length)];

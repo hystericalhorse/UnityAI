@@ -43,12 +43,19 @@ public class NavAgent : Agent
 
 	public Node GetNearestNode()
 	{
-		var nodes = Node.GetNodes();
-		SortByDistance(nodes.ToList<Node>());
+		var nodes = Node.GetNodes().ToList();
+		SortByDistance(nodes);
 
-		return (nodes.Length == 0) ? null : nodes[0];
+		return (nodes.Count == 0) ? null : nodes[0];
 	}
 
+	public void SetDestination(Node destinationNode)
+	{
+		nav_path.startNode = GetNearestNode();
+		nav_path.endNode = destinationNode;
+		nav_path.StartPath();
+		target_node = nav_path.startNode;
+	}
 
 	public void SortByDistance(List<Node> nodes)
 	{
