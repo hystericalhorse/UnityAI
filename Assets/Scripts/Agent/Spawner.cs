@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Agent agent; 
+    public Agent[] agents;
     public LayerMask layer_mask;
 
     void Start()
@@ -15,12 +15,21 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && agents.Length >= 1)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100, layer_mask))
             {
-                Instantiate(agent, hitInfo.point, Quaternion.identity);
+                Instantiate(agents[0], hitInfo.point, Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1) && agents.Length >= 2)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 100, layer_mask))
+            {
+                Instantiate(agents[1], hitInfo.point, Quaternion.AngleAxis(Random.Range(0,360), Vector3.up));
             }
         }
     }

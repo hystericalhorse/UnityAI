@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - AgentBlue
+  - AgentPurple
+  - None
   layers:
   - Default
   - TransparentFX
@@ -12,9 +15,9 @@ TagManager:
   - Spawn
   - Water
   - UI
-  - 
-  - 
-  - 
+  - World
+  - Nav
+  - Player
   - 
   - 
   - 
