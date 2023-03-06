@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Spherecast : View
@@ -29,6 +30,8 @@ public class Spherecast : View
             }
         }
 
+        objs = objs.Distinct().ToList();
+        objs.Sort(CompareDistance);
         return objs.ToArray();
     }
 }

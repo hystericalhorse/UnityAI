@@ -11,6 +11,8 @@ public class Wander : State
 
     public override void OnEnter()
     {
+        owner.atDestination.value = false;
+
         circle = Random.insideUnitCircle * Random.Range(10f, 20f);
 
         owner.navigation.targetNode = null;
@@ -19,6 +21,9 @@ public class Wander : State
         target = owner.transform.position;
         target.x += circle.x;
         target.z += circle.y;
+
+        owner.agentMovement.moveTowards(target);
+        owner.atDestination.value = Vector3.Distance(owner.transform.position, target) <= 0;
     }
 
     public override void OnExit()
@@ -28,11 +33,6 @@ public class Wander : State
 
     public override void OnUpdate()
     {
-        Debug.DrawLine(owner.transform.position, target);
-        owner.agentMovement.moveTowards(target);
-        if (owner.agentMovement.vel.magnitude == 0)
-        {
-            owner.machine.StartState(nameof(Idle));
-        }
+        
     }
 }

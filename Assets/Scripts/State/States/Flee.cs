@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
-public class Chase : State
+public class Flee : State
 {
-    public Chase(StateAgent owner) : base(owner) { }
+    public Flee(StateAgent owner) : base(owner) { }
 
     public override void OnEnter()
     {
         owner.navigation.targetNode = null;
-        if (owner.seen.Length > 0) owner.agentMovement.destination = owner.seen[0].transform.position;
-        owner.timer.value = 2;
         owner.agentMovement.Resume();
     }
 
@@ -22,6 +19,10 @@ public class Chase : State
 
     public override void OnUpdate()
     {
-        
+        if (owner.seen.Length == 0) owner.enemySeen.value = false;
+        else
+        {
+            owner.agentMovement.moveTowards(-owner.seen[0].transform.position);
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Patrol : State
     public override void OnEnter()
     {
         owner.agentMovement.Resume();
-        timer = Random.Range(5, 10);
+        owner.timer.value = Random.Range(5, 10);
         owner.navigation.targetNode = owner.navigation.GetNearestNode();
     }
 
@@ -23,10 +23,8 @@ public class Patrol : State
     public override void OnUpdate()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0) owner.machine.StartState(nameof(Wander));
-        if (owner.seen.Length > 0)
-        {
-            owner.machine.StartState(nameof(Chase));
-        }
+
+        if (timer <= 0) owner.enemySeen.value = false;
+        if (owner.seen.Length > 0) owner.enemySeen.value = true;
     }
 }

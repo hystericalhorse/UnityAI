@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Idle : State
 {
-    private float timer = 0;
+    //private float timer = 0;
 
     public Idle(StateAgent owner) : base(owner) { }
 
     public override void OnEnter()
     {
-
-        timer = Random.Range(2, 4);
+        owner.timer.value = Random.Range(2, 4);
     }
 
     public override void OnExit()
@@ -21,9 +20,9 @@ public class Idle : State
 
     public override void OnUpdate()
     {
-        if (owner.seen.Length > 0) owner.machine.StartState(nameof(Chase));
-        timer -= Time.deltaTime;
-        if (timer <= 0) owner.machine.StartState(nameof(Patrol));
+        if (owner.seen.Length > 0) owner.enemySeen.value = true;
+        //timer -= Time.deltaTime;
+        //if (timer <= 0) owner.machine.StartState(nameof(Patrol));
 
     }
 }
